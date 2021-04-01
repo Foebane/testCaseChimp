@@ -1,21 +1,20 @@
 package stepDefinitions;
 
-import static org.junit.Assert.assertEquals;
-
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+import org.openqa.selenium.WebDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class StepDefinitions {
 
-	
+	private WebDriver driver;
 
 		@Given("I have opened {string} and navigated to https:\\/\\/login.mailchimp.com\\/signup\\/")
-		public void i_have_opened_and_navigated_to_https_login_mailchimp_com_signup(String string) {
+		public void i_have_opened_and_navigated_to_https_login_mailchimp_com_signup(String browser) {
 		    
+			DriveCreator creator = new DriveCreator();
+			driver = creator.createBrowser(browser);
+			driver.get("https://login.mailchimp.com/signup/");
 		}
 
 
@@ -37,7 +36,7 @@ public class StepDefinitions {
 		@Then("the correct  should be shown on the screen")
 		public void the_correct_should_be_shown_on_the_screen() {
 		    
-			
+			driver.quit();
 		}
 	
 	
