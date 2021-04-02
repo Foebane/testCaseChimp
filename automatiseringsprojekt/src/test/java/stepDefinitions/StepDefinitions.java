@@ -38,6 +38,7 @@ public class StepDefinitions {
 	@Given("I input {string}")
 	public void i_input(String username) {
 		WebElement input = driver.findElement(By.id("new_username"));
+		username = rndm.user(username);
 		input.sendKeys(username);
 	}
 
