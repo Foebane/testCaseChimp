@@ -15,5 +15,5 @@ Examples:
  |email         |username             |password     |message            |
  | "validEmail" | "validUserName"     | "P@ssW0rd"  | "Check your email"|
  | "validEmail" | "tooManyCharacters" | "P@ssW0rd"  | "Enter a value less than 100 characters long"|
- | "validEmail" | "userNameTaken"     | "P@ssW0rd"  | "user with this username already exists. Maybe it's your evil twin. Spooky."|
+ | "validEmail" | "userNameTaken"     | "P@ssW0rd"  | "Another user with this username already exists. Maybe it's your evil twin. Spooky."|
  | "noEmail"    | "validUserName"     | "P@ssW0rd"  | "Please enter a value"|
