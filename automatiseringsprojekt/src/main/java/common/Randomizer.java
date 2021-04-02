@@ -8,7 +8,7 @@ public class Randomizer {
 	Random num = new Random();
 
 	private int randomNumbers = ThreadLocalRandom.current().nextInt();
-	String onehundred = "abcde".repeat(20);
+	String onehundred = "abcde".repeat(30);
 
 	public String mail(String email) {
 
