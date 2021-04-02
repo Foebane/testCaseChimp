@@ -7,11 +7,14 @@ public class Randomizer {
 
 	public String mail(String email) {
 		
-		ThreadLocalRandom.current().ints(100);
+		int randomNumbers = ThreadLocalRandom.current().nextInt();
 		
 		
 		if(email.equals("validEmail")) {
-			email = ThreadLocalRandom.current().ints().toString();
+			email = ("Smirk"+String.valueOf(randomNumbers)+"@hotmail.com");
+		
+		}else if(email.equals("noEmail")) {
+			email = "";
 		}
 		
 		return email;
