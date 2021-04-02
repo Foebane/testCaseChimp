@@ -12,6 +12,8 @@ And I also input <password>
 When I press Sign Up
 Then the correct <message> should be shown on the screen
 Examples:
- |email                             |username                          |password          |message|
- | "Greek001pantsonfire@mymail.com"    | "GreekGuyWit001hPantsOnFire"        | "12As!wrT"       | "Check your email"      |
- 
+ |email         |username             |password     |message            |
+ | "validEmail" | "validUsername"     | "P@ssW0rd"  | "Check your email"|
+ | "validEmail" | "tooManyCharacters" | "P@ssW0rd"  | "Enter a value less than 100 characters long"|
+ | "validEmail" | "userNameTaken"     | "P@ssW0rd"  | "user with this username already exists. Maybe it's your evil twin. Spooky."|
+ | "noEmail"    | "validUsername"     | "P@ssW0rd"  | "Please enter a value"|
