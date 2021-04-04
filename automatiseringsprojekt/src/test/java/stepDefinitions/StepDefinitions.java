@@ -13,7 +13,7 @@ public class StepDefinitions {
 
 	private WebDriver driver;
 	private Randomizer rndm;
-	WebElement result;
+	private WebElement result;
 
 	@Given("I have opened {string} , navigated to https:\\/\\/login.mailchimp.com\\/signup\\/ and accepted cookies")
 	public void i_have_opened_navigated_to_https_login_mailchimp_com_signup_and_accepted_cookies(String browser)
@@ -57,23 +57,18 @@ public class StepDefinitions {
 
 	@Then("the correct {string} should be shown on the screen")
 	public void the_correct_should_be_shown_on_the_screen(String message) {
-                 
-		
-			if(message.equals("Check your email")) {
-				result = driver.findElement(By.cssSelector(".\\!margin-bottom--lv3"));
-				
-			}
-			else if(message.equals("Enter a value less than 100 characters long") || message.equals("Another user with this username already exists. Maybe it's your evil twin. Spooky.") || message.equals("Please enter a value")) {
-				result = driver.findElement(By.cssSelector(".invalid-error"));
-				
-			}
-			
-			
-			assertEquals(message, result.getAttribute("innerText"));
-			System.out.println(result.getAttribute("innerText") +"= "+ message);
-		
 
-		
+		if (message.equals("Check your email")) {
+			result = driver.findElement(By.cssSelector(".\\!margin-bottom--lv3"));
+
+		} else {
+			result = driver.findElement(By.cssSelector(".invalid-error"));
+
+		}
+
+		assertEquals(message, result.getAttribute("innerText"));
+		System.out.println(result.getAttribute("innerText") + " = " + message);
+
 		driver.quit();
 	}
 
