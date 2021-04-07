@@ -26,6 +26,8 @@ public class StepDefinitions {
 		driver = creator.createBrowser(browser);
 		// Sidan vi ska testa
 		driver.get("https://login.mailchimp.com/signup/");
+		//Maximerar fönster
+		driver.manage().window().maximize();
 		// Accepterar cookies
 		click(driver, By.id("onetrust-accept-btn-handler"));
 
