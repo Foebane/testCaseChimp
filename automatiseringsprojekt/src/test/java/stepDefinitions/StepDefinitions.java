@@ -29,12 +29,7 @@ public class StepDefinitions {
 		driver.get("https://login.mailchimp.com/signup/");
 		// Maximerar fönster
 		driver.manage().window().maximize();
-		// Accepterar cookies
-		click(driver, By.id("onetrust-accept-btn-handler"));
-		//Om cookies envisas med att dyka upp igen så klickar vi en gång till
-		if(driver.findElement(By.id("onetrust-accept-btn-handler")).isDisplayed()) {
-			click(driver, By.id("onetrust-accept-btn-handler"));
-		}
+		
 
 	}
 
@@ -68,7 +63,7 @@ public class StepDefinitions {
 	public void i_press_sign_up() {
 		// scrolla ner och klickar på att skapa konto
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-				driver.findElement(By.id("create-account")));
+			driver.findElement(By.id("create-account")));
 		click(driver, By.id("create-account"));
 
 	}
