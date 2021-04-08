@@ -3,6 +3,7 @@ package stepDefinitions;
 import static org.junit.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,14 +23,18 @@ public class StepDefinitions {
 	public void i_have_opened_navigated_to_https_login_mailchimp_com_signup(String browser) {
 
 		DriveCreator creator = new DriveCreator();
-		// Bestämmer broweser utifrån feature filen
+		// Bestämmer browser utifrån feature filen
 		driver = creator.createBrowser(browser);
 		// Sidan vi ska testa
 		driver.get("https://login.mailchimp.com/signup/");
-		//Maximerar fönster
+		// Maximerar fönster
 		driver.manage().window().maximize();
 		// Accepterar cookies
 		click(driver, By.id("onetrust-accept-btn-handler"));
+		//Om cookies envisas med att dyka upp igen så klickar vi en gång till
+		if(driver.findElement(By.id("onetrust-accept-btn-handler")).isDisplayed()) {
+			click(driver, By.id("onetrust-accept-btn-handler"));
+		}
 
 	}
 
@@ -61,7 +66,9 @@ public class StepDefinitions {
 
 	@When("I press Sign Up")
 	public void i_press_sign_up() {
-		// klickar på att skapa konto
+		// scrolla ner och klickar på att skapa konto
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+				driver.findElement(By.id("create-account")));
 		click(driver, By.id("create-account"));
 
 	}
@@ -79,8 +86,7 @@ public class StepDefinitions {
 		// jämför vårt meddelande ifrån featurefilen med meddelande/felmeddelande som
 		// visas efter sign up
 		assertEquals(message, result.getAttribute("innerText"));
-		// Matar ut och jämför så att det verkligen blir rätt då testfallen blev gröna
-		// förr
+		// Matar ut och jämför så att det verkligen blir rätt
 		System.out.println(result.getAttribute("innerText") + " = " + message);
 
 		driver.quit();
@@ -88,7 +94,7 @@ public class StepDefinitions {
 
 	public static void click(WebDriver driver, By by) {
 
-		(new WebDriverWait(driver, 10, 1000)).until(ExpectedConditions.
+		(new WebDriverWait(driver, 10)).until(ExpectedConditions.
 
 				elementToBeClickable(by));
 
